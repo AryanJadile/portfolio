@@ -10,8 +10,9 @@ import VisuallyHidden from 'components/VisuallyHidden'
 import { useLocalStorage } from 'hooks'
 import { msToNum } from 'utils/style'
 import { reflow } from 'utils/transition'
-import prerender from 'utils/prerender'
+import preRender from 'utils/prerender'
 import { initialState, reducer } from 'app/reducer'
+import JapaneseBackground from 'components/JapaneseBackground'
 import './reset.css'
 import './index.css'
 
@@ -34,7 +35,7 @@ const App = () => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
     useEffect(() => {
-        if (!prerender) {
+        if (!preRender) {
             console.info(`${repoPrompt}\n\n`)
         }
         window.history.scrollRestoration = 'manual'
@@ -49,6 +50,7 @@ const App = () => {
             <ThemeProvider themeId={state.theme}>
                 <BrowserRouter>
                     <AppRoutes />
+                    <JapaneseBackground />
                 </BrowserRouter>
             </ThemeProvider>
         </AppContext.Provider>
